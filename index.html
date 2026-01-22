@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>出退勤管理</title>
+    <link rel="stylesheet" href="css/style.css">
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>出退勤管理システム</h1>
+        </header>
+
+        <main>
+            <!-- ステータス表示 -->
+            <section class="status-section">
+                <div id="currentStatus" class="status-card">
+                    <h2>現在のステータス</h2>
+                    <p id="statusText">未打刻</p>
+                    <p id="statusTime"></p>
+                </div>
+            </section>
+
+            <!-- QRコード読み取りエリア -->
+            <section class="scanner-section">
+                <h2>QRコードを読み取る</h2>
+                <div id="reader" class="qr-reader"></div>
+                <div id="scanResult" class="scan-result"></div>
+            </section>
+
+            <!-- 本日の勤務時間 -->
+            <section class="today-section">
+                <div class="today-card">
+                    <h2>本日の勤務時間</h2>
+                    <div id="todayWorkTime" class="work-time">--:--</div>
+                </div>
+            </section>
+
+            <!-- 出退勤履歴 -->
+            <section class="history-section">
+                <div class="history-header">
+                    <h2>出退勤履歴</h2>
+                    <button id="clearHistory" class="btn-clear">履歴をクリア</button>
+                </div>
+                <div id="historyList" class="history-list">
+                    <p class="no-data">データがありません</p>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <p><a href="qr-generator.html">QRコードを生成する</a></p>
+        </footer>
+    </div>
+
+    <script src="js/app.js"></script>
+</body>
+</html>
