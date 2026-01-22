@@ -18,6 +18,7 @@
             <section class="status-section">
                 <div id="currentStatus" class="status-card">
                     <h2>現在のステータス</h2>
+                    <p id="statusEmployee"></p>
                     <p id="statusText">未打刻</p>
                     <p id="statusTime"></p>
                 </div>
@@ -29,6 +30,22 @@
                 <div id="reader" class="qr-reader"></div>
                 <div id="scanResult" class="scan-result"></div>
             </section>
+
+            <!-- 従業員選択モーダル -->
+            <div id="employeeModal" class="modal">
+                <div class="modal-content">
+                    <h2>従業員を選択してください</h2>
+                    <div class="employee-input-group">
+                        <label for="employeeIdInput">従業員ID</label>
+                        <input type="text" id="employeeIdInput" placeholder="IDを入力してください" autocomplete="off">
+                    </div>
+                    <div class="employee-list" id="employeeList"></div>
+                    <div class="modal-buttons">
+                        <button class="btn-confirm" id="confirmBtn">確定</button>
+                        <button class="btn-cancel" id="cancelBtn">キャンセル</button>
+                    </div>
+                </div>
+            </div>
 
             <!-- 本日の勤務時間 -->
             <section class="today-section">

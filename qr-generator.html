@@ -14,29 +14,33 @@
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
         }
 
-        .input-group {
-            margin-bottom: 20px;
-        }
-
-        .input-group label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: #333;
-        }
-
-        .input-group input {
-            width: 100%;
-            padding: 12px;
-            border: 2px solid #e0e0e0;
+        .info-box {
+            background: #f0f7ff;
+            border-left: 4px solid #667eea;
+            padding: 20px;
+            margin-bottom: 30px;
             border-radius: 8px;
-            font-size: 16px;
-            transition: border-color 0.3s;
         }
 
-        .input-group input:focus {
-            outline: none;
-            border-color: #667eea;
+        .info-box h3 {
+            color: #667eea;
+            margin-bottom: 10px;
+            font-size: 18px;
+        }
+
+        .info-box p {
+            color: #666;
+            margin: 8px 0;
+            line-height: 1.6;
+        }
+
+        .info-box ul {
+            margin: 10px 0 10px 20px;
+            color: #666;
+        }
+
+        .info-box li {
+            margin: 5px 0;
         }
 
         .btn-generate {
@@ -50,6 +54,7 @@
             font-weight: 600;
             cursor: pointer;
             transition: transform 0.2s;
+            margin-bottom: 20px;
         }
 
         .btn-generate:hover {
@@ -112,74 +117,71 @@
             display: block;
         }
 
-        .sample-ids {
-            margin-top: 20px;
-            padding: 15px;
-            background: #f0f7ff;
+        .instructions {
+            margin-top: 30px;
+            padding: 20px;
+            background: #fff9e6;
+            border-left: 4px solid #ffa726;
             border-radius: 8px;
-            border-left: 4px solid #667eea;
         }
 
-        .sample-ids h3 {
-            font-size: 14px;
-            color: #667eea;
+        .instructions h3 {
+            color: #f57c00;
             margin-bottom: 10px;
+            font-size: 16px;
         }
 
-        .sample-ids p {
-            font-size: 13px;
+        .instructions ol {
+            margin: 10px 0 10px 20px;
             color: #666;
-            margin: 5px 0;
         }
 
-        .sample-id {
-            display: inline-block;
-            background: white;
-            padding: 5px 10px;
-            margin: 5px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background 0.2s;
-        }
-
-        .sample-id:hover {
-            background: #667eea;
-            color: white;
+        .instructions li {
+            margin: 8px 0;
+            line-height: 1.6;
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>QRコード生成</h1>
+            <h1>出退勤用QRコード生成</h1>
         </header>
 
         <main>
             <section class="generator-section">
-                <div class="input-group">
-                    <label for="employeeId">従業員ID</label>
-                    <input type="text" id="employeeId" placeholder="例: EMP001" autocomplete="off">
+                <div class="info-box">
+                    <h3>このシステムについて</h3>
+                    <p>このQRコードは<strong>全従業員共通</strong>で使用します。</p>
+                    <p>QRコード読み取り後に、従業員が自分のIDを入力・選択して出退勤を記録します。</p>
+                    <ul>
+                        <li>QRコードは1つだけ印刷すればOK</li>
+                        <li>複数の従業員が同じQRコードを使用</li>
+                        <li>従業員ごとに個別のQRコードは不要</li>
+                    </ul>
                 </div>
 
-                <button class="btn-generate" onclick="generateQRCode()">QRコードを生成</button>
+                <button class="btn-generate" onclick="generateQRCode()">出退勤用QRコードを生成</button>
 
                 <div id="qrcode"></div>
 
                 <button class="btn-download" id="downloadBtn" onclick="downloadQRCode()">QRコードをダウンロード</button>
 
                 <div id="qrInfo" class="qr-info" style="display: none;">
-                    <p><strong>生成されたID:</strong> <span id="generatedId"></span></p>
-                    <p>このQRコードをスマートフォンで読み取ると出退勤が記録されます</p>
+                    <p><strong>このQRコードを職場の入口などに掲示してください</strong></p>
+                    <p>従業員はスマートフォンで読み取り、自分のIDを入力して出退勤を記録します</p>
                 </div>
 
-                <div class="sample-ids">
-                    <h3>サンプルID (クリックで入力)</h3>
-                    <p>
-                        <span class="sample-id" onclick="setEmployeeId('EMP001')">EMP001</span>
-                        <span class="sample-id" onclick="setEmployeeId('EMP002')">EMP002</span>
-                        <span class="sample-id" onclick="setEmployeeId('EMP003')">EMP003</span>
-                        <span class="sample-id" onclick="setEmployeeId('STAFF001')">STAFF001</span>
-                    </p>
+                <div class="instructions">
+                    <h3>使い方</h3>
+                    <ol>
+                        <li>「出退勤用QRコードを生成」ボタンをクリック</li>
+                        <li>生成されたQRコードをダウンロード</li>
+                        <li>QRコードを印刷して、職場の入口など従業員が読み取りやすい場所に掲示</li>
+                        <li>従業員はスマートフォンで出退勤記録画面を開き、QRコードを読み取る</li>
+                        <li>従業員ID入力画面が表示されるので、自分のIDを入力または選択</li>
+                        <li>確定ボタンを押すと出退勤が記録される</li>
+                    </ol>
                 </div>
             </section>
         </main>
@@ -190,32 +192,25 @@
     </div>
 
     <script>
+        const QR_CODE_VALUE = 'ATTENDANCE_SYSTEM';
         let currentQRCode = null;
 
         function generateQRCode() {
-            const employeeId = document.getElementById('employeeId').value.trim();
-
-            if (!employeeId) {
-                alert('従業員IDを入力してください');
-                return;
-            }
-
             // 既存のQRコードをクリア
             const qrcodeDiv = document.getElementById('qrcode');
             qrcodeDiv.innerHTML = '';
 
             // QRコードを生成
             currentQRCode = new QRCode(qrcodeDiv, {
-                text: employeeId,
-                width: 256,
-                height: 256,
+                text: QR_CODE_VALUE,
+                width: 300,
+                height: 300,
                 colorDark: "#000000",
                 colorLight: "#ffffff",
                 correctLevel: QRCode.CorrectLevel.H
             });
 
             // 情報を表示
-            document.getElementById('generatedId').textContent = employeeId;
             document.getElementById('qrInfo').style.display = 'block';
             document.getElementById('downloadBtn').classList.add('show');
         }
@@ -227,23 +222,15 @@
                 return;
             }
 
-            const employeeId = document.getElementById('employeeId').value.trim();
             const link = document.createElement('a');
-            link.download = `qrcode_${employeeId}.png`;
+            link.download = 'attendance_qrcode.png';
             link.href = canvas.toDataURL();
             link.click();
         }
 
-        function setEmployeeId(id) {
-            document.getElementById('employeeId').value = id;
+        // ページ読み込み時に自動生成
+        window.addEventListener('load', () => {
             generateQRCode();
-        }
-
-        // Enterキーでも生成できるようにする
-        document.getElementById('employeeId').addEventListener('keypress', (e) => {
-            if (e.key === 'Enter') {
-                generateQRCode();
-            }
         });
     </script>
 </body>
